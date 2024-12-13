@@ -1,0 +1,502 @@
+#md_bg_color: 0.858, 0.180, 0.102, 1 Vermelho
+#md_bg_color: 0, 0, 0, 1 preto
+#md_bg_color: 1, 1, 1, 1 branco
+#0.278, 0.306, 0.365, 1 cinza fainor
+
+ScreenManager:
+    id: screen_manager
+    Login:
+        name: 'login'
+        id: login
+    Home:
+        name: 'home'
+        id: home
+    Escolha:
+        name: 'escolha'
+        id: escolha
+    Agende:
+        name: 'agende'
+        id: agende
+    Meus_horarios:
+        name: 'meus_horarios'
+        id: meus_horarios
+    Laboratorios:
+        name: 'laboratorios'
+        id: laboratorios
+
+<Login>:
+    Image:
+        source: 'Fainor_2.png'
+        pos_hint: {'center_x': .5, 'center_y': .75}
+        size_hint_x: .5
+
+    MDTextField:
+        id: user
+        hint_text: 'Usuario:'
+        foreground_color: 0, 1, 0, 1  # Verde
+        text_color_focus: "black"
+        line_color_focus: "black"
+        hint_text_color_focus: "black"
+        icon_left_color_normal: "black"
+        icon_left_color_focus: "black"
+        font_name: "Poppins-Medium.ttf"
+        pos_hint: {'center_x': .5, 'center_y': .6}
+        font_name_hint_text: "Poppins-Medium.ttf"
+        size_hint_x: 0.7
+        icon_left: "account"
+        multiline: False
+
+    MDTextField:
+        id: password
+        hint_text: 'Senha:'
+        line_color_focus: "black"
+        text_color_focus: "black"
+        hint_text_color_focus: "black"
+        icon_left_color_normal: "black"
+        icon_left_color_focus: "black"
+        font_name: "Poppins-Medium.ttf"
+        font_name_hint_text: "Poppins-Medium.ttf"
+        pos_hint: {'center_x': .5, 'center_y': .49}
+        size_hint_x: 0.7
+        icon_left: "key-variant"
+        password: True
+        multiline: False
+
+    MDRaisedButton:
+        id: entra
+        text: 'Entrar'
+        font_name: "Poppins-Medium.ttf"
+        pos_hint: {'center_x': .5, 'center_y': .375}
+        size_hint_x: 0.7
+        size_hint_y: .08
+        elevation: 0
+        on_press: root.autenticacao()
+        md_bg_color: 0.858, 0.180, 0.102, 1
+        text_color: 1, 1, 1, 1
+
+
+    MDTextButton:
+        text: 'Esqueci a Senha'
+        font_name: "Poppins-Medium.ttf"
+        pos_hint: {'center_x': .5, 'center_y': .3}
+        size_hint_x: 0.7
+        theme_text_color: 'Custom'
+        text_color: 'blue'
+<Home>:
+    MDBoxLayout:
+        md_bg_color: 0.9607843137254902, 0.9607843137254902, 0.9607843137254902, 1
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: TopBar
+            specific_text_color: 0, 0, 0, 1
+            md_bg_color: 1, 1, 1, 1
+            pos_hint: {'top': 1}
+            left_action_items: [['menu', lambda x: x]]
+            right_action_items: [["account-circle-outline", lambda x: app.callback(x)]]
+            elevation: .5
+        MDBoxLayout:
+            size_hint_y: .35
+            MDLabel:
+                id: bv
+                halign: 'center'
+                font_name: "Poppins-SemiBold.ttf"
+                font_size: '25sp'
+
+
+
+
+        MDGridLayout:
+            cols: 2
+            size_hint_y: .75
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            padding:[dp(15), dp(15), dp(15), dp(35)]
+            spacing: dp(15)
+            MDCard:
+                padding: dp(10)
+                spacing: dp(10)
+                size_hint: .2, .2
+                ripple_behavior: True
+                pos_hint: {"center_x": .5, "center_y": .5}
+                md_bg_color: 0.858, 0.180, 0.102, 1
+                elevation: 0
+                on_press: root.manager.current = 'escolha'
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    Image:
+                        source: 'calendario1.png'
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        size_hint_x: .4
+                        size_hint_y: .4
+                    MDLabel
+                        size_hint_y: .4
+                        halign: 'center'
+                        text: 'Agende seu horario'
+                        color: 'white'
+                        font_name: "Poppins-Medium.ttf"
+                        font_size: '14sp'
+            MDCard:
+                orientation: 'vertical'
+                padding: dp(10)
+                spacing: dp(10)
+                size_hint: .2, .4
+                ripple_behavior: True
+                pos_hint: {"center_x": .5, "center_y": .5}
+                md_bg_color: 0.858, 0.180, 0.102, 1
+                elevation: 0
+                on_press: root.manager.current = 'laboratorios'
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    Image:
+                        source: 'computador1.png'
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        size_hint_x: .4
+                        size_hint_y: .1
+                    MDLabel
+                        size_hint_y: .1
+                        halign: 'center'
+                        text: 'Laboratorios'
+                        color: 'white'
+                        font_name: "Poppins-Medium.ttf"
+                        font_size: '14sp'
+            MDCard:
+                orientation: 'vertical'
+                padding: dp(10)
+                spacing: dp(10)
+                size_hint: .2, .4
+                ripple_behavior: True
+                pos_hint: {"center_x": .5, "center_y": .5}
+                md_bg_color: 0.858, 0.180, 0.102, 1
+                elevation: 0
+                on_press: root.manager.current = 'meus_horarios'
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    Image:
+                        source: 'agenda.png'
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        size_hint_x: .4
+                        size_hint_y: .4
+                    MDLabel
+                        size_hint_y: .4
+                        halign: 'center'
+                        text: 'Meus Horarios'
+                        color: 'white'
+                        font_name: "Poppins-Medium.ttf"
+                        font_size: '14sp'
+
+
+            MDCard:
+                orientation: 'vertical'
+                padding: dp(20)
+                spacing: dp(5)
+                size_hint: .2, .4
+                ripple_behavior: True
+                md_bg_color: 0.858, 0.180, 0.102, 1
+                elevation: 0
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    Image:
+                        source: 'bate-papo1.png'
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        size_hint_x: .4
+                        size_hint_y: .4
+                    MDLabel
+                        size_hint_y: .4
+                        halign: 'center'
+                        text: 'Informação'
+                        color: 'white'
+                        font_name: "Poppins-Medium.ttf"
+                        font_size: '14sp'
+        MDBoxLayout:
+            size_hint_y: .15
+            MDLabel:
+<Escolha>:
+    MDBoxLayout:
+        md_bg_color: 0.9607843137254902, 0.9607843137254902, 0.9607843137254902, 1
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: bar_escolha
+            specific_text_color: 0, 0, 0, 1
+            md_bg_color: 1, 1, 1, 1
+            pos_hint: {'top': 1}
+            left_action_items: [['arrow-left', lambda x: app.switch_to_screen('home')]]
+            right_action_items: [["account-circle-outline", lambda x: app.callback(x)]]
+            elevation: .5
+        MDFloatLayout:
+            MDBoxLayout:
+                orientation: 'vertical'
+                pos_hint: {"center_x": 0.5}
+                spacing: dp(35)
+                Widget:
+                    size_hint_y: .5
+                MDLabel:
+                    text: 'Agende seu horario'
+                    halign: 'center'
+                    font_name: "Poppins-SemiBold.ttf"
+                    font_size: '25sp'
+                MDRelativeLayout:
+                    size_hint_y: None
+                    height: escolha_lab.height
+                    size_hint_x: None
+                    width: "300dp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    MDTextField:
+                        id: escolha_lab
+                        size_hint_x: None
+                        readonly: True
+                        width: "200dp"
+                        hint_text: "Laboratórios"
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        text_color_normal: "black"
+                        text_color_focus: "black"
+                        line_color_normal: "black"
+                        line_color_focus: "black"
+                        hint_text_color_normal: "black"
+                        hint_text_color_focus: "black"
+                        icon_left_color_normal: "black"
+                        icon_left_color_focus: "black"
+                        font_name: "Poppins-Medium.ttf"
+                        font_name_hint_text: "Poppins-Medium.ttf"
+                    MDIconButton:
+                        icon: "chevron-down"
+                        theme_icon_color: "Custom"
+                        icon_color: "black"
+                        on_release: app.callback_labs(self)
+                        pos_hint: {"center_x": .8, "center_y": .5}
+                        pos: escolha_lab.width - self.width + dp(8), 0
+                        theme_text_color: "Hint"
+                MDRelativeLayout:
+                    size_hint_y: None
+                    height: escolha_mes.height
+                    size_hint_x: None
+                    width: "300dp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    MDTextField:
+                        id: escolha_mes
+                        size_hint_x: None
+                        readonly: True
+                        width: "200dp"
+                        hint_text: "Mês"
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        text_color_normal: "black"
+                        text_color_focus: "black"
+                        line_color_normal: "black"
+                        line_color_focus: "black"
+                        hint_text_color_normal: "black"
+                        hint_text_color_focus: "black"
+                        icon_left_color_normal: "black"
+                        icon_left_color_focus: "black"
+                        font_name: "Poppins-Medium.ttf"
+                        font_name_hint_text: "Poppins-Medium.ttf"
+                    MDIconButton:
+                        icon: "chevron-down"
+                        theme_icon_color: "Custom"
+                        icon_color: "black"
+                        on_release: app.callback_mes(self)
+                        pos_hint: {"center_x": .8, "center_y": .5}
+                        pos: escolha_lab.width - self.width + dp(8), 0
+                        theme_text_color: "Hint"
+                MDRelativeLayout:
+                    size_hint_y: None
+                    height: escolha_prog.height
+                    size_hint_x: None
+                    width: "300dp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    MDTextField:
+                        id: escolha_prog
+                        size_hint_x: None
+                        readonly: True
+                        width: "200dp"
+                        hint_text: "Programas"
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        text_color_normal: "black"
+                        text_color_focus: "black"
+                        line_color_normal: "black"
+                        line_color_focus: "black"
+                        hint_text_color_normal: "black"
+                        hint_text_color_focus: "black"
+                        icon_left_color_normal: "black"
+                        icon_left_color_focus: "black"
+                        font_name: "Poppins-Medium.ttf"
+                        font_name_hint_text: "Poppins-Medium.ttf"
+                    MDIconButton:
+                        icon: "chevron-down"
+                        icon_color: "black"
+                        theme_icon_color: "Custom"
+                        on_release: app.callback_prog(self)
+                        pos_hint: {"center_x": .8, "center_y": .5}
+                        pos: escolha_lab.width - self.width + dp(8), 0
+                        theme_text_color: "Hint"
+                MDRelativeLayout:
+                    size_hint_y: None
+                    height: escolha_prog.height
+                    size_hint_x: None
+                    width: "300dp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    MDRaisedButton:
+                        id: Avançar
+                        text: 'Avançar'
+                        font_name: "Poppins-Medium.ttf"
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        size_hint_x: .7
+                        elevation: 0
+                        on_press: app.Avançar()
+                        md_bg_color: 0.858, 0.180, 0.102, 1
+                        text_color: 1, 1, 1, 1
+                Widget:
+                    size_hint_y: .5
+
+
+<Agende>:
+    MDBoxLayout:
+        md_bg_color: 0.9607843137254902, 0.9607843137254902, 0.9607843137254902, 1
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: bar_agende
+            specific_text_color: 0, 0, 0, 1
+            md_bg_color: 1, 1, 1, 1
+            pos_hint: {'top': 1}
+            left_action_items: [['arrow-left', lambda x: app.switch_to_screen('escolha')]]
+            right_action_items: [["account-circle-outline", lambda x: app.callback(x)]]
+            elevation: .5
+        MDBoxLayout:
+            id: format
+            orientation: 'vertical'
+            MDLabel:
+                id: mes
+                md_bg_color: 0.858, 0.180, 0.102, 1
+                color: 'white'
+                halign: 'center'
+                size_hint_y: .05
+                font_name: "Poppins-Medium.ttf"
+            MDTabs:
+                id: tabs
+                on_tab_switch: root.on_tab_switch(*args)
+                background_color: 0.858, 0.180, 0.102, 1
+                color_indicator: 0.278, 0.306, 0.365, 1
+                font_name: "Poppins-Medium.ttf"
+
+<ListItemWithCheckbox>:
+    id: listitem
+    IconLeftWidget:
+        icon: 'calendar-clock-outline'
+    RightCheckbox:
+        on_active: root.on_checkbox_active(listitem, self, self.active)
+<Tab>:
+    MDScrollView:
+        MDList:
+            id: horario
+
+    MDRaisedButton:
+        id: marcar
+        text: 'Marcar Horario'
+        font_name: "Poppins-Medium.ttf"
+        pos_hint: {'center_x': .5, 'center_y': .375}
+        size_hint_x: 0.7
+        size_hint_y: .08
+        elevation: 0
+        on_press: root.on_button_press()
+        md_bg_color: 0.858, 0.180, 0.102, 1
+        text_color: 1, 1, 1, 1
+
+<Meus_horarios>:
+    MDBoxLayout:
+        id: box_layout
+        md_bg_color: 0.9607843137254902, 0.9607843137254902, 0.9607843137254902, 1
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: bar_meus_horarios
+            specific_text_color: 0, 0, 0, 1
+            md_bg_color: 1, 1, 1, 1
+            pos_hint: {'top': 1}
+            left_action_items: [['arrow-left', lambda x: app.switch_to_screen('home')]]
+            right_action_items: [["account-circle-outline", lambda x: app.callback(x)]]
+            elevation: .5
+        MDFloatLayout:
+            id: float_layout
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.8
+            size_hint_y: .2
+            pos_hint: {"center_x": 0.5}
+            padding: "24dp"
+            spacing: "24dp"
+            MDRaisedButton:
+                text: 'Desmarcar'
+                on_release: root.on_button_press1()
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {'center_x': .5, 'center_y': .375}
+                size_hint_x: 0.7
+                size_hint_y: .08
+                elevation: 0
+                md_bg_color: 0.858, 0.180, 0.102, 1
+                text_color: 1, 1, 1, 1
+
+        Widget:
+            size_hint_y: .2
+<Laboratorios>:
+    MDBoxLayout:
+        id: box_lab
+        md_bg_color: 0.9607843137254902, 0.9607843137254902, 0.9607843137254902, 1
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: bar_lab
+            specific_text_color: 0, 0, 0, 1
+            md_bg_color: 1, 1, 1, 1
+            pos_hint: {'top': 1}
+            left_action_items: [['arrow-left', lambda x: app.switch_to_screen('home')]]
+            right_action_items: [["account-circle-outline", lambda x: app.callback(x)]]
+            elevation: .5
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            pos_hint: {"center_x": 0.5}
+            padding: dp(35)
+            MDRelativeLayout:
+                size_hint_y: None
+                height: escolha.height
+                size_hint_x: None
+                width: "300dp"
+                pos_hint: {"center_x": .5, "center_y": .5}
+                MDTextField:
+                    id: escolha
+                    size_hint_x: None
+                    readonly: True
+                    width: "200dp"
+                    hint_text: "Laboratório"
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    text_color_normal: "black"
+                    text_color_focus: "black"
+                    line_color_normal: "black"
+                    line_color_focus: "black"
+                    hint_text_color_normal: "black"
+                    hint_text_color_focus: "black"
+                    icon_left_color_normal: "black"
+                    icon_left_color_focus: "black"
+                    font_name: "Poppins-Medium.ttf"
+                    font_name_hint_text: "Poppins-Medium.ttf"
+                MDIconButton:
+                    icon: "chevron-down"
+                    icon_color: "black"
+                    theme_icon_color: "Custom"
+                    on_release: app.callback_laboratorio(self)
+                    pos_hint: {"center_x": .8, "center_y": .5}
+                    theme_text_color: "Hint"
+            MDBoxLayout:
+                orientation: 'vertical'
+                id: lab_label
+                pos_hint: {"center_x": 0.5}
+                size_hint_x: .8
+
+
+
+            MDRaisedButton:
+                text: 'Selecionar'
+                on_release: root.laboratorios_info()
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                size_hint_x: 0.7
+                size_hint_y: .08
+                elevation: 0
+                md_bg_color: 0.858, 0.180, 0.102, 1
+                text_color: 1, 1, 1, 1
